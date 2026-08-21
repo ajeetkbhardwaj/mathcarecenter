@@ -1,0 +1,69 @@
+---
+title: "Formula Cheat Sheet"
+description: "High-density reference table for derivatives, integrals, Taylor series, vector calculus, and matrix identities."
+order: 3
+---
+
+## Derivatives
+
+| Function $f(x)$ | Derivative $f'(x)$ |
+| --- | --- |
+| $x^n$ | $n x^{n-1}$ |
+| $e^x$ | $e^x$ |
+| $\ln x$ | $\dfrac{1}{x}$ |
+| $\sin x$ | $\cos x$ |
+| $\cos x$ | $-\sin x$ |
+| $\arctan x$ | $\dfrac{1}{1+x^2}$ |
+
+**Rules**:
+- Product Rule: $(uv)' = u'v + uv'$
+- Quotient Rule: $\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$
+- Chain Rule: $(f \circ g)'(x) = f'(g(x))g'(x)$
+
+## Integrals
+
+$$
+\int x^n \,dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1), \qquad \int \frac{dx}{x} = \ln|x| + C
+$$
+
+$$
+\int e^{ax}\,dx = \frac{e^{ax}}{a} + C, \qquad \int \frac{dx}{1+x^2} = \arctan x + C
+$$
+
+**Integration by Parts**:
+$$
+\int u\,dv = uv - \int v\,du
+$$
+
+## Taylor Series
+
+$$
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
+$$
+
+$$
+\sin x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
+$$
+
+$$
+\cos x = \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
+$$
+
+## Vector Calculus Operators
+
+With Del operator $\nabla = \left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)$:
+
+- **Gradient**: $\nabla f$ (vector field of steepest growth)
+- **Divergence**: $\nabla \cdot \mathbf{F}$ (scalar flux density)
+- **Curl**: $\nabla \times \mathbf{F}$ (vector rotational density)
+- **Laplacian**: $\nabla^2 f = \nabla \cdot \nabla f$ (curvature / diffusion)
+
+## Matrix Identities
+
+$$
+\det(AB) = \det(A)\det(B), \qquad \operatorname{tr}(AB) = \operatorname{tr}(BA)
+$$
+
+$$
+(AB)^{-1} = B^{-1}A^{-1}, \qquad \operatorname{rank}(A) + \dim\ker(A) = n \quad \text{(Rank-Nullity)}
+$$

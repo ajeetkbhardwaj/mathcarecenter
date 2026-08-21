@@ -1,0 +1,32 @@
+---
+title: "Probability"
+description: "Kolmogorov axioms, Bayes' theorem, continuous distributions, the Central Limit Theorem, and Markov chains."
+order: 4
+---
+
+## Kolmogorov Axioms
+
+Probability measure $P$ on sample space $\Omega$ satisfies:
+1. $P(A) \ge 0$ for all events $A$
+2. $P(\Omega) = 1$
+3. Countable additivity for disjoint events: $P\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty P(A_i)$
+
+## Bayes' Theorem
+
+$$
+P(A \mid B) = \frac{P(B \mid A) P(A)}{P(B)}
+$$
+
+where $P(B) = \sum_{i} P(B \mid A_i) P(A_i)$ for a partition $\{A_i\}$ of $\Omega$.
+
+## Central Limit Theorem (CLT)
+
+If $X_1, X_2, \dots, X_n$ are independent and identically distributed (i.i.d.) random variables with mean $\mu$ and finite variance $\sigma^2$, then the sample mean $\bar{X}_n$ satisfies:
+
+$$
+\sqrt{n}\left(\bar{X}_n - \mu\right) \xrightarrow{d} \mathcal{N}(0, \sigma^2) \quad \text{as } n \to \infty
+$$
+
+## Markov Chains
+
+A discrete-time Markov chain on state space $S$ satisfies the Markov property: $P(X_{n+1} = j \mid X_n = i, \dots, X_0 = i_0) = P(X_{n+1} = j \mid X_n = i) = P_{ij}$.

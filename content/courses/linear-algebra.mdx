@@ -1,0 +1,41 @@
+---
+title: "Linear Algebra"
+description: "Vector spaces, matrices as linear maps, spectral theory, and Singular Value Decomposition."
+order: 2
+---
+
+## Vector Spaces & Linear Maps
+
+A vector space $V$ over a field $\mathbb{F}$ is a set closed under vector addition and scalar multiplication satisfying eight standard axioms.
+
+A matrix $A \in \mathbb{F}^{m \times n}$ represents a linear transformation $T: \mathbb{F}^n \to \mathbb{F}^m$. The columns of $A$ are the images of the standard basis vectors.
+
+## Determinants & Eigenvalues
+
+For a square matrix $A$, the determinant $\det(A)$ represents the signed volume expansion factor.
+
+An eigenvector $v \neq 0$ and eigenvalue $\lambda \in \mathbb{C}$ satisfy:
+
+$$
+A v = \lambda v \iff (A - \lambda I)v = 0
+$$
+
+The eigenvalues are roots of the characteristic polynomial $p(\lambda) = \det(A - \lambda I)$.
+
+## The Spectral Theorem
+
+For every real symmetric matrix $A = A^\top \in \mathbb{R}^{n \times n}$, there exists an orthogonal matrix $Q$ ($Q^\top Q = I$) and real diagonal matrix $\Lambda$ such that:
+
+$$
+A = Q \Lambda Q^\top
+$$
+
+## Singular Value Decomposition (SVD)
+
+Every real matrix $A \in \mathbb{R}^{m \times n}$ can be factored as:
+
+$$
+A = U \Sigma V^\top
+$$
+
+where $U \in \mathbb{R}^{m \times m}$ and $V \in \mathbb{R}^{n \times n}$ are orthogonal matrices, and $\Sigma \in \mathbb{R}^{m \times n}$ contains non-negative singular values $\sigma_1 \ge \sigma_2 \ge \cdots \ge 0$.

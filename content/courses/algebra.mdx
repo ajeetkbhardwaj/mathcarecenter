@@ -1,0 +1,33 @@
+---
+title: "Modern Algebra"
+description: "Groups, Lagrange's theorem, normal subgroups, ring homomorphisms, and field extensions."
+order: 3
+---
+
+## Groups
+
+A group $(G, \cdot)$ is a set $G$ with a binary operation satisfying associativity, existence of an identity element $e$, and existence of inverse elements $g^{-1}$ for all $g \in G$.
+
+## Lagrange's Theorem
+
+If $G$ is a finite group and $H \le G$ is a subgroup, then the order of $H$ divides the order of $G$:
+
+$$
+|G| = [G : H] \cdot |H|
+$$
+
+where $[G : H]$ is the number of left cosets of $H$ in $G$.
+
+## Normal Subgroups & Quotient Groups
+
+A subgroup $N \le G$ is normal ($N \trianglelefteq G$) if $g N g^{-1} = N$ for all $g \in G$.
+
+When $N$ is normal, the set of cosets $G/N$ forms a group under $(aN)(bN) = (ab)N$, called the quotient group.
+
+## Ring & Field Homomorphisms
+
+A ring homomorphism $\varphi: R \to S$ preserves addition and multiplication. The First Isomorphism Theorem states:
+
+$$
+R / \ker(\varphi) \cong \operatorname{im}(\varphi)
+$$

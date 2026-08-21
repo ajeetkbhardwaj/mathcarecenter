@@ -1,0 +1,31 @@
+---
+title: "Linear Algebra for Artificial Intelligence"
+description: "Tensors, attention mechanisms, and loss surfaces explained through linear algebra."
+date: "2025-01-20"
+order: 2
+---
+
+Modern machine learning models—from neural networks to Transformer LLMs—are fundamentally linear algebra operations interspersed with non-linear activation functions.
+
+## Attention as Matrix Multiplication
+
+The Scaled Dot-Product Attention mechanism in Transformers is defined as:
+
+$$
+\operatorname{Attention}(Q, K, V) = \operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
+$$
+
+- $QK^\top$ computes pairwise similarity scores between Query vectors and Key vectors.
+- Scaling by $\sqrt{d_k}$ prevents variance explosion in higher dimensions.
+- Softmax converts scores into probability weights.
+- Multiplying by $V$ computes a weighted linear combination of Value vectors.
+
+## Loss Surface Curvature & The Hessian
+
+Near a local minimum, a loss function $L(\theta)$ can be approximated by its second-order Taylor expansion:
+
+$$
+L(\theta + \delta) \approx L(\theta) + \frac{1}{2} \delta^\top H \delta
+$$
+
+where $H = \nabla^2 L$ is the symmetric Hessian matrix. The eigenvalues of $H$ dictate the steepness and direction of curvature along the loss surface.

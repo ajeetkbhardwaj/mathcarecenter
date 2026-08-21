@@ -1,0 +1,39 @@
+---
+title: "Calculus"
+description: "Rate of change, the ε–δ limit definition, optimization, and Stokes' theorem."
+order: 1
+---
+
+## Rate of Change & Limits
+
+Calculus studies continuous change. The derivative represents instantaneous rate of change:
+
+$$
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+$$
+
+### The $\varepsilon$–$\delta$ Definition of Limit
+
+We say $\lim_{x \to a} f(x) = L$ if for every $\varepsilon > 0$, there exists a $\delta > 0$ such that:
+
+$$
+0 < |x - a| < \delta \implies |f(x) - L| < \varepsilon
+$$
+
+## The Fundamental Theorem of Calculus
+
+If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$ ($F' = f$), then:
+
+$$
+\int_a^b f(x)\,dx = F(b) - F(a)
+$$
+
+## Multivariable Calculus & Stokes' Theorem
+
+For a smooth oriented surface $S$ with boundary curve $\partial S$ and smooth vector field $\mathbf{F}$:
+
+$$
+\oint_{\partial S} \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla \times \mathbf{F}) \cdot d\mathbf{S}
+$$
+
+This unifies Green's theorem, the divergence theorem, and the fundamental theorem of calculus into one statement.
