@@ -50,7 +50,7 @@ jobs:
       - name: Build Production Web App
         run: npm run build
         env:
-          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url || 'https://mathcarecentre.app' }}
+          NEXT_PUBLIC_SITE_URL: ${{ steps.pages.outputs.base_url ||  'https://ajeetkbhardwaj.github.io/mathcarecenter' }}
 
       - name: Setup GitHub Pages Artifact
         uses: actions/upload-pages-artifact@v3
