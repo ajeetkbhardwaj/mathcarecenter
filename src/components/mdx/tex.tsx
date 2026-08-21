@@ -50,19 +50,39 @@ export function Tex({
 }) {
   const source = String(children ?? "");
 
+  let renderedHtml: string | null = null;
+  let segments: Segment[] | null = null;
+  let isPlain = false;
+  let hasError = false;
+
   try {
     if (!source.includes("$")) {
-      return (
-        <span
-          className={className}
-          dangerouslySetInnerHTML={{ __html: render(source, display) }}
-        />
-      );
+      isPlain = true;
+      renderedHtml = render(source, display);
+    } else {
+      segments = segment(source);
     }
+  } catch {
+    hasError = true;
+  }
 
+  if (hasError) {
+    return <code className={className}>{source}</code>;
+  }
+
+  if (isPlain && renderedHtml !== null) {
+    return (
+      <span
+        className={className}
+        dangerouslySetInnerHTML={{ __html: renderedHtml }}
+      />
+    );
+  }
+
+  if (segments) {
     return (
       <span className={className}>
-        {segment(source).map((s, i) => (
+        {segments.map((s, i) => (
           <Fragment key={i}>
             {s.math ? (
               <span dangerouslySetInnerHTML={{ __html: render(s.value, display) }} />
@@ -73,7 +93,7 @@ export function Tex({
         ))}
       </span>
     );
-  } catch {
-    return <code className={className}>{source}</code>;
   }
+
+  return <code className={className}>{source}</code>;
 }

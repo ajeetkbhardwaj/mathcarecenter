@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import { db } from "@/db";
-import { courses, lessons } from "@/db/schema";
+import { courses, lessons, users } from "@/db/schema";
+import { hashPassword } from "@/lib/auth";
 
 type SeedLesson = {
   slug: string;
@@ -137,6 +138,24 @@ const DATA: SeedCourse[] = [
 let inflight: Promise<void> | null = null;
 
 async function run() {
+  // Seed demo users if not present
+  try {
+    const passwordHash = await hashPassword("mathematics");
+    const demoUsers = [
+      { name: "Ada Lovelace", email: "ada@mathcare.dev", passwordHash },
+      { name: "Alan Turing", email: "alan@mathcare.dev", passwordHash },
+      { name: "Student Explorer", email: "student@mathcare.dev", passwordHash },
+    ];
+    for (const u of demoUsers) {
+      await db
+        .insert(users)
+        .values({ name: u.name, email: u.email, passwordHash: u.passwordHash, role: "student", plan: "free" })
+        .onConflictDoNothing();
+    }
+  } catch {
+    // Ignore if table doesn't support or already seeded
+  }
+
   const [{ count }] = await db
     .select({ count: sql<number>`cast(count(*) as int)` })
     .from(courses);

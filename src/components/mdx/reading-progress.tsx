@@ -45,9 +45,14 @@ export function ReadingProgress({
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    setRead(readFlag(readKey));
-    setBookmarked(readFlag(markKey));
-    setHydrated(true);
+    const r = readFlag(readKey);
+    const m = readFlag(markKey);
+    const timer = window.setTimeout(() => {
+      setRead(r);
+      setBookmarked(m);
+      setHydrated(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [readKey, markKey]);
 
   useEffect(() => {

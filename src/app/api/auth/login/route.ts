@@ -25,7 +25,11 @@ export async function POST(request: Request) {
     }
 
     await createSession(user.id);
-    return Response.json({ ok: true, redirectUrl: next });
+    return Response.json({
+      ok: true,
+      user: { id: user.id, name: user.name, email: user.email },
+      redirectUrl: next,
+    });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : "Authentication error";
     return Response.json({ error: message }, { status: 500 });

@@ -95,12 +95,10 @@ export function SiteHeader({ user }: { user: HeaderUser }) {
   const pathname = usePathname();
   const [mobile, setMobile] = useState(false);
 
-  useEffect(() => setMobile(false), [pathname]);
-
   return (
     <header className="sticky top-0 z-50 h-[57px] border-b border-line bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-full max-w-[1400px] items-center gap-3 px-4 sm:px-6">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5">
+        <Link href="/" onClick={() => setMobile(false)} className="flex shrink-0 items-center gap-2.5">
           <PiMark />
           <span className="text-[15.5px] font-bold tracking-[-0.02em] whitespace-nowrap">
             Math Care Center
@@ -179,6 +177,7 @@ export function SiteHeader({ user }: { user: HeaderUser }) {
                 <Link
                   key={n.href}
                   href={n.href}
+                  onClick={() => setMobile(false)}
                   className="rounded-lg px-3 py-2 text-[14px] font-medium text-muted hover:bg-surface-2 hover:text-foreground"
                 >
                   {n.label}

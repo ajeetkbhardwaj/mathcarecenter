@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, BookOpen, Check, Clock, Sparkles } from "lucide-react";
 import { asc, eq } from "drizzle-orm";
 import { db } from "@/db";
-import { courses, enrollments, lessons } from "@/db/schema";
+import { courses, enrollments, lessons, type Course, type Lesson } from "@/db/schema";
 import { getCurrentUser } from "@/lib/auth";
 import { ensureSeeded } from "@/lib/seed";
 import { formatPrice } from "@/lib/utils";
@@ -22,22 +22,22 @@ async function load() {
     await ensureSeeded();
     const [user, rows, lessonRows] = await Promise.all([
       getCurrentUser(),
-      db.select().from(courses).where(eq(courses.published, true)).orderBy(asc(courses.sortOrder)),
-      db.select().from(lessons),
+      db.select().from(courses).where(eq(courses.published, true)).orderBy(asc(courses.sortOrder)) as Promise<Course[]>,
+      db.select().from(lessons) as Promise<Lesson[]>,
     ]);
 
     const enrolledCourseIds = new Set<number>();
     if (user) {
-      const e = await db
+      const e = (await db
         .select({ courseId: enrollments.courseId })
         .from(enrollments)
-        .where(eq(enrollments.userId, user.id));
+        .where(eq(enrollments.userId, user.id))) as Array<{ courseId: number }>;
       e.forEach((r) => enrolledCourseIds.add(r.courseId));
     }
 
     return { rows, lessonRows, enrolledCourseIds, user };
   } catch {
-    return { rows: [], lessonRows: [], enrolledCourseIds: new Set<number>(), user: null };
+    return { rows: [] as Course[], lessonRows: [] as Lesson[], enrolledCourseIds: new Set<number>(), user: null };
   }
 }
 

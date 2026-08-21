@@ -80,7 +80,10 @@ export function SearchDialog() {
       .slice(0, 10);
   }, [q, selectedTag, index]);
 
-  useEffect(() => setActive(0), [q, selectedTag]);
+  function handleTagSelect(tag: string | null) {
+    setSelectedTag(tag);
+    setActive(0);
+  }
 
   function go(href: string) {
     setOpen(false);
@@ -127,7 +130,10 @@ export function SearchDialog() {
                 <input
                   ref={inputRef}
                   value={q}
-                  onChange={(e) => setQ(e.target.value)}
+                  onChange={(e) => {
+                    setQ(e.target.value);
+                    setActive(0);
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === "ArrowDown") {
                       e.preventDefault();
@@ -159,7 +165,7 @@ export function SearchDialog() {
                 </span>
                 <button
                   type="button"
-                  onClick={() => setSelectedTag(null)}
+                  onClick={() => handleTagSelect(null)}
                   className={cn(
                     "rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors",
                     selectedTag === null
@@ -173,7 +179,7 @@ export function SearchDialog() {
                   <button
                     key={t.id}
                     type="button"
-                    onClick={() => setSelectedTag(selectedTag === t.id ? null : t.id)}
+                    onClick={() => handleTagSelect(selectedTag === t.id ? null : t.id)}
                     className={cn(
                       "rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors",
                       selectedTag === t.id

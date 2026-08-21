@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { asc, eq } from "drizzle-orm";
 import { db } from "@/db";
-import { courses, lessons } from "@/db/schema";
+import { courses, lessons, type Course, type Lesson } from "@/db/schema";
 import { ensureSeeded } from "@/lib/seed";
 
 export const dynamic = "force-dynamic";
@@ -70,12 +70,12 @@ const PATHWAYS = [
   },
 ];
 
-async function loadData() {
+async function loadData(): Promise<{ allCourses: Course[]; allLessons: Lesson[] }> {
   try {
     await ensureSeeded();
     const [allCourses, allLessons] = await Promise.all([
-      db.select().from(courses).where(eq(courses.published, true)).orderBy(asc(courses.sortOrder)).limit(3),
-      db.select().from(lessons),
+      db.select().from(courses).where(eq(courses.published, true)).orderBy(asc(courses.sortOrder)).limit(3) as Promise<Course[]>,
+      db.select().from(lessons) as Promise<Lesson[]>,
     ]);
     return { allCourses, allLessons };
   } catch {
